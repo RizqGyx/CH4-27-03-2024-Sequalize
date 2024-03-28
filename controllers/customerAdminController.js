@@ -24,7 +24,7 @@ const createCustomerPage = async (req, res) => {
 const createCustomer = async (req, res) => {
   try {
     await Customer.create(req.body);
-    req.flash("message", "ditambah");
+    req.flash("message", "Di Tambah");
     res.redirect("/customers");
   } catch (err) {
     res.render("error.ejs", { message: err.message });
@@ -33,7 +33,8 @@ const createCustomer = async (req, res) => {
 
 const updateCustomerPage = async (req, res) => {
   try {
-    res.render("customer/update.ejs");
+    const customer = await Customer.findByPk(req.params.id);
+    res.render("customer/update.ejs", { customer });
   } catch (err) {
     res.render("error.ejs", { message: err.message });
   }
@@ -41,11 +42,11 @@ const updateCustomerPage = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
   try {
-    const customer = await Customer.update(req.body, {
+    await Customer.update(req.body, {
       where: { id: req.params.id },
     });
-    req.flash("message", "ditambah");
-    res.redirect("/customers", { customer });
+    req.flash("message", "Di Update");
+    res.redirect("/customers");
   } catch (err) {
     res.render("error.ejs", { message: err.message });
   }
@@ -53,9 +54,9 @@ const updateCustomer = async (req, res) => {
 
 const deleteCustomer = async (req, res) => {
   try {
-    const customer = await Customer.destroy({ where: { id: req.params.id } });
+    await Customer.destroy({ where: { id: req.params.id } });
 
-    res.redirect("/customers", { customer });
+    res.redirect("/customers");
   } catch (err) {
     res.render("error.ejs", { message: err.message });
   }
