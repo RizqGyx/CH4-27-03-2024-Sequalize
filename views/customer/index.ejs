@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="shortcut icon"
+      href="../public/images/icon.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <h1>Hello FSW 1 Dari Muhammad Rizki</h1>
+    <% if(message != "") {%>
+    <div class="alert">Data Berhasil <%= message %></div>
+    <% } %>
+    <table>
+      <th>id</th>
+      <th>name</th>
+      <th>password</th>
+      <th>age</th>
+      <th>city</th>
+      <th>email</th>
+      <th>createdAt</th>
+      <th>action</th>
+      <% customers.map((customer) => { %>
+      <tr>
+        <td style="padding: 0 15px"><%= customer.id %></td>
+        <td style="padding: 0 15px"><%= customer.name %></td>
+        <td style="padding: 0 15px"><%= customer.password %></td>
+        <td style="padding: 0 15px"><%= customer.age %></td>
+        <td style="padding: 0 15px"><%= customer.city %></td>
+        <td style="padding: 0 15px"><%= customer.email %></td>
+        <td style="padding: 0 15px"><%= customer.createdAt %></td>
+        <td style="padding: 0 15px">
+          <a href="/customers/update/<%= customer.id %>"
+            ><button>edit</button></a
+          >
+          <form
+            action="/customers/admin/delete/<%= customer.id %>"
+            method="post"
+          >
+            <button>delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+
+    <a href="/customers/create">Tambah Customer Baru</a>
+  </body>
+</html>

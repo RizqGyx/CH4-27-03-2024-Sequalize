@@ -1,7 +1,15 @@
 const { Customer } = require("../models");
 
 const createCustomer = async (req, res) => {
-  const { name, age, email, password, city } = req.body;
+  const {
+    name,
+    age,
+    email,
+    password,
+    city,
+    photo = "Kepo",
+    isActive = true,
+  } = req.body;
 
   try {
     const newCustomer = await Customer.create({
@@ -10,6 +18,8 @@ const createCustomer = async (req, res) => {
       email,
       password,
       city,
+      photo,
+      isActive,
     });
 
     res.status(200).json({
