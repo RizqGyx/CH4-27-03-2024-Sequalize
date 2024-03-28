@@ -55,7 +55,7 @@ const updateCustomer = async (req, res) => {
 const deleteCustomer = async (req, res) => {
   try {
     await Customer.destroy({ where: { id: req.params.id } });
-
+    req.flash("message", "Di Delete");
     res.redirect("/customers");
   } catch (err) {
     res.render("error.ejs", { message: err.message });

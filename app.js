@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 app.use(flash());
 app.use(session({ secret: "rizki", saveUninitialized: true, resave: true }));
+app.use(express.static(`${__dirname}/public`));
 
 // View Enggine
 app.set("views", __dirname + "/views");

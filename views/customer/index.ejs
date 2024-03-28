@@ -6,14 +6,20 @@
     <title>Dashboard</title>
     <link
       rel="shortcut icon"
-      href="../public/images/icon.png"
+      href="../../public/images/icon.png"
       type="image/x-icon"
     />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <h1>Hello FSW 1 Dari Muhammad Rizki</h1>
     <% if(message != "") {%>
-    <div class="alert">Data Berhasil <%= message %></div>
+    <div
+      class="alert"
+      style="text-align: center; color: white; font-size: 2rem"
+    >
+      Data Berhasil <%= message %>
+    </div>
     <% } %>
     <table>
       <th>id</th>
@@ -48,6 +54,6 @@
       <% }) %>
     </table>
 
-    <a href="/customers/create">Tambah Customer Baru</a>
+    <a href="/customers/create"><button>Tambah Customer Baru</button></a>
   </body>
 </html>
